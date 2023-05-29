@@ -1,0 +1,64 @@
+{
+	"name": "hello",
+	"signature": "(a: str, b: str = None, c: str = None)",
+	"args": {
+		"a": {
+			"name": "a",
+			"annotation": "<class 'str'>",
+			"default": "<class 'inspect._empty'>",
+			"kind": 1,
+			"decl": "a: str"
+		},
+		"b": {
+			"name": "b",
+			"annotation": "<class 'str'>",
+			"default": "None",
+			"kind": 1,
+			"decl": "b: str = None"
+		},
+		"c": {
+			"name": "c",
+			"annotation": "<class 'str'>",
+			"default": "None",
+			"kind": 1,
+			"decl": "c: str = None"
+		}
+	},
+	"code": {
+		"co_consts": [
+			null
+		],
+		"co_names": [
+			"print",
+			"context",
+			"function",
+			"name",
+			"valueargs",
+			"source",
+			"locals",
+			"globals",
+			"filename",
+			"lineno"
+		],
+		"co_varnames": [
+			"a",
+			"b",
+			"c"
+		],
+		"co_freevars": [],
+		"co_cellvars": [],
+		"co_code": "b't\\x00t\\x01j\\x02j\\x03\\x83\\x01\\x01\\x00t\\x00t\\x01j\\x02j\\x04\\x83\\x01\\x01\\x00t\\x00t\\x01j\\x02j\\x05\\x83\\x01\\x01\\x00t\\x00t\\x01j\\x02j\\x06\\x83\\x01\\x01\\x00t\\x00t\\x01j\\x07\\x83\\x01\\x01\\x00t\\x00t\\x01j\\x08\\x83\\x01\\x01\\x00t\\x00t\\x01j\\t\\x83\\x01\\x01\\x00t\\x00|\\x00|\\x01|\\x02\\x83\\x03\\x01\\x00d\\x00S\\x00'",
+		"co_linetable": "b'\\x0c\\x01\\x0c\\x01\\x0c\\x01\\x0c\\x01\\n\\x01\\n\\x01\\n\\x01\\x02\\x02\\x02\\x01\\x02\\x01\\x02\\x01\\x08\\xfd'",
+		"co_lnotab": "b'\\x00\\x01\\x0c\\x01\\x0c\\x01\\x0c\\x01\\x0c\\x01\\n\\x01\\n\\x01\\n\\x02\\x02\\x01\\x02\\x01\\x02\\x01\\x02\\xfd'",
+		"co_argcount": 3,
+		"co_posonlyargcount": 0,
+		"co_kwonlyargcount": 0,
+		"co_nlocals": 3,
+		"co_stacksize": 4,
+		"co_flags": 67,
+		"co_filename": "C:\\Users\\carlf\\programs\\context\\test.py",
+		"co_name": "hello",
+		"co_firstlineno": 3
+	},
+	"source": "def hello(a: str, b: str=None, c: str=None):\n\tprint(context.function.name)\n\tprint(context.function.valueargs)\n\tprint(context.function.source)\n\tprint(context.function.locals)\n\tprint(context.globals)\n\tprint(context.filename)\n\tprint(context.lineno)\n\n\tprint(\n\t\ta,\n\t\tb,\n\t\tc\n\t)\n"
+}
