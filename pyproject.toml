@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pycontext-lib"
-version = "1.0.0"
+version = "1.0.1"
 description = "Lots of properties that help with program context!"
 readme = "README.md"
 authors = [{ name = "Carl Furtado", email = "carlzfurtado@gmail.com" }]
@@ -16,6 +16,7 @@ classifiers = [
     "Operating System :: OS Independent"
 ]
 requires-python = ">= 3.9"
+keywords = ["context", "properties"]
 
 [project.urls]
 Homepage = "https://github.com/User0332/pycontext"
