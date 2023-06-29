@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pycontext-lib"
-version = "1.0.1"
+version = "1.0.2"
 description = "Lots of properties that help with program context!"
 readme = "README.md"
 authors = [{ name = "Carl Furtado", email = "carlzfurtado@gmail.com" }]

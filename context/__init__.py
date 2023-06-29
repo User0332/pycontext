@@ -1,6 +1,8 @@
 """Provides helpful functions and properties for the code context using `inspect`."""
 import inspect
 import json
+import sys
+import os
 import random
 from types import (
 	CodeType, 
@@ -20,26 +22,37 @@ class FunctionProperties:
 
 	@property
 	def name(self):
+		"""The name of the function"""
+
 		return self._func.__name__
 
 	@property
 	def signature(self):
+		"""The function's argument signature"""
+
 		return inspect.signature(self._func)
 
 	@property
 	def args(self):
+		"""Returns a mapping object of the function's parameters"""
 		return self.signature.parameters
 
 	@property
 	def code(self):
+		"""Get the function's code object"""
+
 		return self._func.__code__
 
 	@property
 	def source(self):
+		"""Get the function's source code"""
+
 		return inspect.getsource(self._func)
 
 	@property
 	def props(self):
+		"""Get a dictionary of this object's properties"""
+
 		return {
 			**{
 				prop: str(getattr(self, prop))
@@ -93,10 +106,24 @@ class FunctionProperties:
 class ProgramObject:
 	def __init__(self, frame: FrameType):
 		self._frame = frame
+	
+	@property
+	def argv(self):
+		"""Get the program's command-line arguments (identical to `sys.argv`)"""
+
+		return sys.argv
+
+	@property
+	def env(self):
+		"""Return a map of the program's enviroment variables (synonymous to os.environ)"""
+
+		return os.environ
 
 	def crash(self, num: int=None):
-		if (num is None) or (not (0 <= num <= 20)):
-			num = random.randint(0, 20)
+		"""Ten fun ways to crash the program (or raise an exception)!"""
+
+		if (num is None) or (not (0 <= num <= 10)):
+			num = random.randint(0, 10)
 
 		if num == 0:
 			try: self.crash(0)
@@ -163,6 +190,8 @@ class FunctionContext:
 
 	@property
 	def locals(self) -> dict[str]:
+		"""Returns a dict of the function's locals"""
+
 		return self._frame.f_locals
 
 	@property
@@ -191,37 +220,64 @@ program: ProgramObject
 class ContextObject:
 	def __init__(self, frame: FrameType):
 		self._frame = frame
-		self._function = FunctionContext(self._frame)
+		self._info = inspect.getframeinfo(frame, 3)
+		self._function: FunctionContext = None
+		self._program: ProgramObject = None
 
 	@property
 	def function(self):
 		"""Namespace for function-related properties"""
+		if self._function: return self._function
+
+		self._function = FunctionContext(self._frame)
+
 		return self._function
 
 	@property
 	def builtins(self):
+		"""Returns a dict of the current context's builtins"""
 		return self._frame.f_builtins
 	
 	@property
 	def globals(self):
+		"""Returns a dict of the current context's globals"""
 		return self._frame.f_globals
 
 	@property
 	def prevctx(self):
+		"""Returns the context of the previous frame"""
 		return ContextObject(self._frame.f_back)
 
 	@property
+	def code(self):
+		"""Returns the code object associated with the current context"""
+		return self._frame.f_code
+	
+	@property
+	def sourcelns(self):
+		"""Returns the previous, current, and next line of the code context as a string. Returns `None` if it could not be retrieved."""
+		try: return self._info.code_context[self._info.index]
+		except TypeError: return None
+
+	@property
 	def lineno(self):
+		"""Returns the line number of the context"""
 		return self._frame.f_lineno
 
 	@property
 	def filename(self):
-		return inspect.getframeinfo(self._frame).filename
+		"""Returns the filename of the context"""
+		return self._info.filename
 
 	@property
 	def program(self):
-		"""A namespace especially for `crash()`!"""
-		return ProgramObject(self._frame)
+		"""A namespace containing program-related properties (made especially for `crash()`!)"""
+
+		if self._program: return self._program
+
+		self._program = ProgramObject(self._frame)
+
+		return self._program
 
 def frameify():
 	return inspect.currentframe().f_back

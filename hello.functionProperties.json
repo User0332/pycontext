@@ -56,7 +56,7 @@
 		"co_nlocals": 3,
 		"co_stacksize": 4,
 		"co_flags": 67,
-		"co_filename": "C:\\Users\\carlf\\programs\\context\\test.py",
+		"co_filename": "/workspaces/pycontext/test.py",
 		"co_name": "hello",
 		"co_firstlineno": 3
 	},
